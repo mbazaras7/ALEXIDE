@@ -1,0 +1,33 @@
+.examCard {
+  background: rgba(255, 255, 255, 0.04) !important;
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.examCard:hover {
+  background: rgba(255, 255, 255, 0.07) !important;
+  border-color: rgba(123, 91, 245, 0.35) !important;
+  transform: translateY(-1px);
+}
+
+.examCardActive {
+  border-color: rgba(74, 222, 128, 0.25) !important;
+  background: rgba(74, 222, 128, 0.03) !important;
+}
+
+.examCardActive:hover {
+  border-color: rgba(74, 222, 128, 0.45) !important;
+}
+
+.empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 4rem 2rem;
+  text-align: center;
+}
+
+.alert {
+  border-radius: 8px;
+}

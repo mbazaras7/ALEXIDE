@@ -1,0 +1,233 @@
+.root {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  background: #0d0d1a;
+  color: white;
+  overflow: hidden;
+}
+
+.banner {
+  flex-shrink: 0;
+  height: 48px;
+  background: rgba(20, 18, 35, 0.98);
+  border-bottom: 1px solid rgba(123, 91, 245, 0.25);
+  display: flex;
+  align-items: center;
+}
+
+.examTitle {
+  max-width: 280px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.timerNormal {
+  color: rgba(255, 255, 255, 0.85);
+}
+.timerWarning {
+  color: #ffd43b;
+}
+.timerCritical {
+  color: #ff6b6b;
+  animation: pulse 1s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.55;
+  }
+}
+
+.submitErrorBanner {
+  flex-shrink: 0;
+  border-radius: 0;
+}
+
+.body {
+  flex: 1;
+  display: flex;
+  overflow: hidden;
+}
+
+.sidebar {
+  width: 240px;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  background: rgba(16, 14, 28, 0.95);
+  border-right: 1px solid rgba(123, 91, 245, 0.18);
+  overflow: hidden;
+}
+
+.sidebarLabel {
+  letter-spacing: 0.6px;
+}
+
+.questionItem {
+  all: unset;
+  cursor: pointer;
+  display: block;
+  width: 100%;
+  padding: 10px 16px;
+  border-left: 3px solid transparent;
+  transition:
+    background 140ms ease,
+    border-color 140ms ease;
+}
+.questionItem:hover {
+  background: rgba(123, 91, 245, 0.08);
+}
+.questionItemActive {
+  background: rgba(123, 91, 245, 0.14);
+  border-left-color: #7b5bf5;
+}
+
+.questionItemText {
+  min-width: 0;
+  flex: 1;
+}
+.descriptionContent {
+  flex: 1;
+  min-width: 0;
+}
+.descriptionActions {
+  flex-shrink: 0;
+}
+.questionDescription {
+  white-space: pre-wrap;
+}
+
+.dotUnanswered {
+  color: rgba(255, 255, 255, 0.25);
+  flex-shrink: 0;
+}
+.dotAttempted {
+  color: #ffd43b;
+  flex-shrink: 0;
+}
+.dotSaved {
+  color: #69db7c;
+  flex-shrink: 0;
+}
+
+.editorPanel {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  min-width: 0;
+}
+
+.questionPanel {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  overflow: hidden;
+}
+
+.descriptionBar {
+  flex-shrink: 0;
+  background: rgba(18, 15, 32, 0.9);
+  border-bottom: 1px solid rgba(123, 91, 245, 0.18);
+  max-height: 160px;
+  overflow-y: auto;
+}
+
+.monacoWrapper {
+  flex: 1;
+  min-height: 0;
+  overflow: hidden;
+}
+
+.actionBar {
+  flex-shrink: 0;
+  background: rgba(14, 12, 26, 0.98);
+  border-top: 1px solid rgba(123, 91, 245, 0.18);
+}
+
+.runResults {
+  max-height: 240px;
+  overflow-y: auto;
+  border-top: 1px solid rgba(123, 91, 245, 0.12);
+}
+
+.runResult {
+  padding: 8px 16px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+.runResult:last-child {
+  border-bottom: none;
+}
+
+.output {
+  margin: 0;
+  font-family: 'JetBrains Mono', 'Fira Code', monospace;
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.8);
+  background: rgba(255, 255, 255, 0.04);
+  padding: 8px;
+  border-radius: 4px;
+  white-space: pre-wrap;
+  word-break: break-word;
+  max-height: 120px;
+  overflow-y: auto;
+}
+
+.successIcon {
+  color: #69db7c;
+}
+.tabSwitchBadge {
+  cursor: default;
+}
+
+.connectionDot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+.connectionDotOnline {
+  background: #69db7c;
+}
+.connectionDotOffline {
+  background: #ff6b6b;
+}
+
+.btnPrimary {
+  color: #b075ff;
+}
+
+.submitBtn {
+  background: #7b5bf5;
+  color: #fff;
+}
+.submitBtn:hover {
+  background: #6647d9;
+}
+
+.btnRun {
+  color: #b075ff;
+}
+
+.btnSave {
+  background: #7b5bf5;
+  color: #fff;
+}
+.btnSave:hover {
+  background: #6647d9;
+}
+
+.badgeLanguage {
+  background: rgba(123, 91, 245, 0.15);
+  color: #b075ff;
+}
+
+.statusBadges {
+  flex-shrink: 0;
+}

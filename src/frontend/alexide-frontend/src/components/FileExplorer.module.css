@@ -1,0 +1,170 @@
+.container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  background: transparent;
+}
+
+.header {
+  padding: 1rem;
+  border-bottom: 1px solid rgba(123, 91, 245, 0.2);
+  background: rgba(123, 91, 245, 0.08);
+  backdrop-filter: blur(10px);
+  transition: all 0.3s ease;
+}
+
+.header:hover {
+  background: rgba(123, 91, 245, 0.12);
+  border-bottom-color: rgba(123, 91, 245, 0.3);
+}
+
+.header * {
+  color: white;
+}
+
+.headerButton {
+  transition: all 0.2s ease;
+}
+
+.headerButton:hover {
+  background: rgba(123, 91, 245, 0.2);
+  transform: scale(1.1);
+}
+
+.fileNode {
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border-radius: 6px;
+  margin: 2px 8px;
+  background: transparent;
+  border-left: 3px solid transparent;
+}
+
+.fileNode:hover {
+  background: rgba(123, 91, 245, 0.15);
+  transform: translateX(4px);
+}
+
+.fileNode.selected {
+  background: rgba(123, 91, 245, 0.25);
+  border-left: 3px solid #7b5bf5;
+  box-shadow: 0 2px 8px rgba(123, 91, 245, 0.4);
+}
+
+.fileNode * {
+  color: white;
+}
+
+.icon {
+  transition: transform 0.2s ease;
+  filter: drop-shadow(0 0 2px rgba(123, 91, 245, 0.3));
+}
+
+.fileNode:hover .icon {
+  transform: scale(1.15);
+}
+
+.actionButton {
+  opacity: 0.6;
+  transition: all 0.2s ease;
+}
+
+.fileNode:hover .actionButton {
+  opacity: 1;
+}
+
+.actionButton:hover {
+  background: rgba(123, 91, 245, 0.3);
+  transform: rotate(90deg);
+}
+
+.menuDropdown {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(123, 91, 245, 0.2);
+  box-shadow: 0 8px 24px rgba(123, 91, 245, 0.3);
+}
+
+.modalContent {
+  background: rgba(30, 30, 46, 0.98);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(123, 91, 245, 0.3);
+}
+
+.modalHeader {
+  background: rgba(123, 91, 245, 0.1);
+  border-bottom: 1px solid rgba(123, 91, 245, 0.2);
+}
+
+.modalHeader * {
+  color: white;
+}
+
+.label {
+  color: rgba(255, 255, 255, 0.9);
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+}
+
+.input {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(123, 91, 245, 0.3);
+  color: white;
+  transition: all 0.3s ease;
+}
+
+.input:focus {
+  border-color: #7b5bf5;
+  box-shadow: 0 0 0 2px rgba(123, 91, 245, 0.2);
+}
+
+.input::placeholder {
+  color: rgba(255, 255, 255, 0.4);
+}
+
+.dragOver {
+  border: 2px dashed rgba(123, 91, 245, 0.8);
+  background: rgba(123, 91, 245, 0.08);
+  border-radius: 8px;
+}
+
+.dragOverlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(123, 91, 245, 0.12);
+  border-radius: 8px;
+  pointer-events: none;
+  z-index: 10;
+}
+
+.dragging {
+  opacity: 0.4;
+  cursor: grabbing;
+}
+
+.dragTarget {
+  border: 2px dashed rgba(123, 91, 245, 0.8) !important;
+  background: rgba(123, 91, 245, 0.18) !important;
+  border-radius: 6px;
+}
+
+.rootDropZone {
+  border: 2px dashed rgba(255, 255, 255, 0.1);
+}
+
+.rootDropZone,
+.rootDropZone.dragTarget {
+  margin: 8px;
+  min-height: 36px;
+  padding: 8px;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition:
+    background 0.2s ease,
+    border-color 0.2s ease;
+}

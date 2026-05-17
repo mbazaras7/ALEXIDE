@@ -1,0 +1,146 @@
+services:
+  #Database
+  postgres:
+    image: postgres:13
+    container_name: alexide-db
+    environment:
+      POSTGRES_DB: alexide_dev
+      POSTGRES_USER: alexide_user
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-alexide_password}
+      POSTGRES_HOST_AUTH_METHOD: trust
+    ports:
+      - "5433:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - alexide-network
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U alexide_user"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+      start_period: 10s
+
+  #Redis
+  redis:
+    image: redis:8-alpine
+    container_name: alexide-redis
+    ports:
+      - "6379:6379"
+    networks:
+      - alexide-network
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+      start_period: 10s
+
+  #Backend API
+  backend:
+    build:
+      context: ./src/backend
+      dockerfile: Dockerfile
+    container_name: alexide-backend
+    environment:
+      PORT: 3000
+      DB_HOST: postgres
+      DB_PORT: 5432
+      DB_USER: alexide_user
+      DB_PASSWORD: alexide_password
+      DB_NAME: alexide_dev
+      NODE_ENV: development
+      JWT_SECRET: ${JWT_SECRET:-dev-secret-change-in-production}
+      CORS_ORIGIN: http://localhost:3001
+      MINIO_ENDPOINT: http://minio:9000
+      MINIO_ACCESS_KEY: alexide_admin
+      MINIO_SECRET_KEY: alexide_secret_123
+      EXEC_NETWORK_NAME: alexide-exec-network
+      EXEC_IMAGE_NAME: alexide-python-executor
+      REDIS_URL: redis://redis:6379
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./src/backend:/app
+      - /app/node_modules
+      - /var/run/docker.sock:/var/run/docker.sock
+    networks:
+      - alexide-network
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+      minio:
+        condition: service_healthy
+      python-executor-builder:
+        condition: service_completed_successfully
+    command: sh -c "npm run db:push && npm run dev"
+
+  #Frontend
+  frontend:
+    build:
+      context: ./src/frontend/alexide-frontend
+      dockerfile: Dockerfile
+    container_name: alexide-frontend
+    environment:
+      REACT_APP_API_URL: http://localhost:3000
+      BROWSER: none
+      PORT: 3001
+      HOST: 0.0.0.0
+    ports:
+      - "3001:3001"
+    volumes:
+      - ./src/frontend/alexide-frontend:/app
+      - /app/node_modules
+    networks:
+      - alexide-network
+    depends_on:
+      - backend
+    stdin_open: true
+    tty: true
+    command: npm start
+
+  #Minio
+  minio:
+    image: minio/minio:latest
+    container_name: alexide-minio
+    ports:
+      - "9000:9000" #API port
+      - "9001:9001" #Web Console UI
+    environment:
+      MINIO_ROOT_USER: alexide_admin
+      MINIO_ROOT_PASSWORD: ${MINIO_ROOT_PASSWORD:-alexide_secret_123}
+    command: server /data --console-address ":9001"
+    volumes:
+      - minio_data:/data
+    healthcheck:
+      test: ["CMD", "mc", "ready", "local"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+      start_period: 10s
+    networks:
+      - alexide-network
+
+  python-executor-builder:
+    build:
+      context: ./src/backend/docker/python-executor
+      dockerfile: Dockerfile
+    image: alexide-python-executor
+    command: echo "Python executor image built successfully"
+    networks:
+      - alexide-network
+
+volumes:
+  postgres_data:
+  minio_data:
+    driver: local
+
+networks:
+  alexide-network:
+    driver: bridge
+
+  alexide-exec-network:
+    driver: bridge
+    internal: true #No internet access

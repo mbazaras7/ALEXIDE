@@ -1,0 +1,69 @@
+.container {
+  padding: 2rem;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.title {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: white;
+  letter-spacing: -0.3px;
+}
+
+.subtitle {
+  color: rgba(255, 255, 255, 0.45);
+  font-size: 0.875rem;
+  margin-top: 3px;
+}
+
+.backButton {
+  color: rgba(255, 255, 255, 0.5);
+  transition: color 0.2s ease;
+}
+
+.backButton:hover {
+  color: white;
+  background: rgba(123, 91, 245, 0.15);
+}
+
+.ideButton {
+  background: linear-gradient(135deg, #7b5bf5 0%, #9d7eff 100%);
+  color: white;
+  border: none;
+}
+
+.ideButton:hover {
+  background: linear-gradient(135deg, #6647d9 0%, #8b6ef0 100%);
+}
+
+.submissionCard {
+  background: rgba(34, 197, 94, 0.06);
+  border: 1px solid rgba(34, 197, 94, 0.25);
+  border-radius: 8px;
+}
+
+.infoCard {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(123, 91, 245, 0.15);
+  border-radius: 8px;
+}
+
+.sectionLabel {
+  font-size: 0.7rem;
+  color: rgba(255, 255, 255, 0.4);
+  text-transform: uppercase;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+.alert {
+  background: rgba(255, 107, 107, 0.08);
+  border: 1px solid rgba(255, 107, 107, 0.3);
+  border-radius: 6px;
+}
+
+.alertMessage {
+  color: rgba(255, 180, 180, 0.9);
+  font-size: 0.875rem;
+}

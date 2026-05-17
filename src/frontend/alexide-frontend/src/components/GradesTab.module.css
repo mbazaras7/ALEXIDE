@@ -1,0 +1,113 @@
+.groupCard {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(123, 91, 245, 0.15);
+  border-radius: 8px;
+}
+
+.gradeRow {
+  padding: 8px;
+  border-radius: 6px;
+  transition: background 0.15s ease;
+}
+
+.gradeRow:hover {
+  background: rgba(123, 91, 245, 0.08);
+}
+
+.score {
+  font-family: monospace;
+  color: white;
+  font-size: 0.875rem;
+  font-weight: 600;
+}
+
+.recordButton {
+  background: linear-gradient(135deg, #7b5bf5 0%, #9d7eff 100%);
+  color: white;
+  border: none;
+}
+
+.recordButton:hover {
+  background: linear-gradient(135deg, #6a4ee0 0%, #8b6eef 100%);
+}
+
+.releaseButton {
+  color: #9d7eff;
+}
+
+.releaseButton:hover {
+  background: rgba(123, 91, 245, 0.15);
+}
+
+.iconButton {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.iconButton:hover {
+  color: white;
+  background: rgba(123, 91, 245, 0.2);
+}
+
+.empty {
+  text-align: center;
+  padding: 3rem 2rem;
+  border: 2px dashed rgba(123, 91, 245, 0.15);
+  border-radius: 10px;
+}
+
+.modalContent {
+  background: rgba(20, 20, 35, 0.98);
+  border: 1px solid rgba(123, 91, 245, 0.3);
+}
+
+.modalHeader {
+  background: rgba(123, 91, 245, 0.08);
+  border-bottom: 1px solid rgba(123, 91, 245, 0.2);
+  color: white;
+  --mantine-color-default-border: transparent;
+}
+
+.modalHeader * {
+  color: white;
+}
+
+.modalClose {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.modalClose:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: white;
+}
+
+.input {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(123, 91, 245, 0.3);
+  color: white;
+  border-radius: 6px;
+}
+
+.input:focus {
+  border-color: #7b5bf5;
+}
+.input::placeholder {
+  color: rgba(255, 255, 255, 0.3);
+}
+
+.label {
+  color: rgba(255, 255, 255, 0.8);
+  font-weight: 500;
+  margin-bottom: 2px;
+  margin-top: 8px;
+}
+
+.alert {
+  background: rgba(255, 107, 107, 0.08);
+  border: 1px solid rgba(255, 107, 107, 0.3);
+  border-radius: 6px;
+}
+
+.alertMessage {
+  color: rgba(255, 180, 180, 0.9);
+  font-size: 0.875rem;
+}

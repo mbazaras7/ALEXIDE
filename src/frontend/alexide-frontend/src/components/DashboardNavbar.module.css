@@ -1,0 +1,31 @@
+.navLink * {
+  color: white !important;
+}
+
+.navLink {
+  padding: 6px 10px;
+  border-radius: 6px;
+  transition: all 0.2s ease;
+  background: transparent;
+  border: 1px solid transparent;
+}
+
+.navLink:hover {
+  background: rgba(123, 91, 245, 0.08);
+  border-color: rgba(123, 91, 245, 0.2);
+  transform: translateX(4px);
+}
+
+.navLink[data-active='true'] {
+  background: rgba(123, 91, 245, 0.12);
+  border-color: rgba(123, 91, 245, 0.3);
+  box-shadow: 0 4px 12px rgba(123, 91, 245, 0.2);
+}
+
+.navIcon {
+  transition: all 0.2s ease;
+}
+
+.navLink:hover .navIcon {
+  transform: scale(1.1);
+}

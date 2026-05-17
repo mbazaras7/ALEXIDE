@@ -1,0 +1,28 @@
+.authContainer {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.authCard {
+  box-shadow:
+    0 8px 32px rgba(0, 0, 0, 0.4),
+    0 0 40px rgba(123, 91, 245, 0.3),
+    0 0 0 1px rgba(255, 255, 255, 0.1);
+}
+
+.authHeader {
+  text-align: center;
+  color: white;
+}
+
+.logo {
+  letter-spacing: -1px;
+}
+
+.tagline {
+  opacity: 0.95;
+  font-weight: 300;
+}

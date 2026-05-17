@@ -1,0 +1,165 @@
+.container {
+  padding: 2rem;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.title {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: white;
+  letter-spacing: -0.3px;
+}
+
+.subtitle {
+  color: rgba(255, 255, 255, 0.45);
+  font-size: 0.875rem;
+  margin-top: 3px;
+}
+
+.backButton {
+  color: rgba(255, 255, 255, 0.5);
+  transition: color 0.2s ease;
+}
+
+.backButton:hover {
+  color: white;
+  background: rgba(123, 91, 245, 0.15);
+}
+
+.addButton {
+  background: linear-gradient(135deg, #7b5bf5 0%, #9d7eff 100%);
+  color: white;
+  border: none;
+}
+
+.addButton:hover {
+  background: linear-gradient(135deg, #6647d9 0%, #8b6ef0 100%);
+}
+
+.publishButton {
+  background: linear-gradient(135deg, #7b5bf5 0%, #9d7eff 100%);
+  color: white;
+  border: none;
+}
+
+.publishButton:hover {
+  background: linear-gradient(135deg, #6647d9 0%, #8b6ef0 100%);
+}
+
+.tab {
+  color: rgba(255, 255, 255, 0.4);
+  font-size: 0.875rem;
+  transition: color 0.2s ease;
+}
+
+.tab:hover {
+  color: rgba(255, 255, 255, 0.8);
+  background: rgba(123, 91, 245, 0.08);
+}
+
+.tab[data-active] {
+  color: white;
+  border-bottom-color: #7b5bf5;
+}
+
+.tabPanel {
+  padding-top: 0;
+}
+
+.testCaseCard,
+.submissionCard {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(123, 91, 245, 0.15);
+  border-radius: 8px;
+  transition: border-color 0.2s ease;
+}
+
+.testCaseCard:hover,
+.submissionCard:hover {
+  border-color: rgba(123, 91, 245, 0.3);
+}
+
+.code {
+  background: rgba(123, 91, 245, 0.12);
+  border: 1px solid rgba(123, 91, 245, 0.2);
+  border-radius: 4px;
+  padding: 1px 6px;
+  font-family: 'Fira Code', 'Courier New', monospace;
+  font-size: 0.8rem;
+  color: #c4b5fd;
+}
+
+.iconButton {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.iconButton:hover {
+  color: white;
+  background: rgba(123, 91, 245, 0.2);
+}
+
+.empty {
+  text-align: center;
+  padding: 4rem 2rem;
+  border: 2px dashed rgba(123, 91, 245, 0.15);
+  border-radius: 10px;
+}
+
+.modalContent {
+  background: rgba(20, 20, 35, 0.98);
+  border: 1px solid rgba(123, 91, 245, 0.3);
+}
+
+.modalHeader {
+  background: rgba(123, 91, 245, 0.08);
+  border-bottom: 1px solid rgba(123, 91, 245, 0.2);
+  color: white;
+  --mantine-color-default-border: transparent;
+}
+
+.modalHeader * {
+  color: white;
+}
+
+.modalClose {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.modalClose:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: white;
+}
+
+.input {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(123, 91, 245, 0.3);
+  color: white;
+  border-radius: 6px;
+}
+
+.input:focus {
+  border-color: #7b5bf5;
+}
+.input::placeholder {
+  color: rgba(255, 255, 255, 0.3);
+}
+
+.label {
+  color: rgba(255, 255, 255, 0.8);
+  font-weight: 500;
+  margin-bottom: 4px;
+  margin-top: 8px;
+}
+
+.alert {
+  background: rgba(255, 107, 107, 0.08);
+  border: 1px solid rgba(255, 107, 107, 0.3);
+  border-radius: 6px;
+  margin-top: 4px;
+}
+
+.alertMessage {
+  color: rgba(255, 180, 180, 0.9);
+  font-size: 0.875rem;
+}

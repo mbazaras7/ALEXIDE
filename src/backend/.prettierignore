@@ -1,0 +1,12 @@
+dist
+build
+
+node_modules
+
+drizzle.config.ts
+drizzle
+
+*.log
+
+.env
+.env.*

@@ -1,0 +1,37 @@
+.homeContainer {
+  min-height: 100vh;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 40px 20px;
+}
+
+.featureCard {
+  background-color: rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(10px);
+  border: 2px solid rgba(255, 255, 255, 0.18);
+  transition: all 0.3s ease;
+  cursor: default;
+}
+
+.featureCard:hover {
+  background-color: rgba(255, 255, 255, 0.16);
+  transform: translateY(-8px);
+}
+
+.iconWrapper {
+  box-shadow: 0 8px 16px rgba(123, 91, 245, 0.3);
+}
+
+.getStartedBtn {
+  padding: 16px 48px;
+  box-shadow: 0 8px 24px rgba(123, 91, 245, 0.4);
+  transition: all 0.3s ease;
+}
+
+.getStartedBtn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 32px rgba(123, 91, 245, 0.5);
+}

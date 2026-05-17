@@ -1,0 +1,27 @@
+.terminalWrapper {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  background: #0f0f1e;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.terminalHeader {
+  flex-shrink: 0;
+  background: rgba(123, 91, 245, 0.08);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.terminalContainer {
+  flex: 1;
+  padding: 8px;
+  overflow: hidden;
+}
+
+.terminalContainer .xterm {
+  height: 100%;
+}
+
+.terminalContainer .xterm-viewport {
+  overflow-y: auto;
+}

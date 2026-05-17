@@ -1,0 +1,162 @@
+.container {
+  padding: 2rem;
+  max-width: 100%;
+  width: 100%;
+}
+
+.backButton {
+  color: rgba(255, 255, 255, 0.6) !important;
+}
+.backButton:hover {
+  color: white !important;
+  background: rgba(255, 255, 255, 0.08) !important;
+}
+
+.title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: white;
+}
+.subtitle {
+  color: rgba(255, 255, 255, 0.55);
+  font-size: 0.875rem;
+  margin-top: 4px;
+}
+
+.tab {
+  color: rgba(255, 255, 255, 0.55) !important;
+  font-size: 0.875rem;
+}
+.tab[data-active] {
+  color: white !important;
+}
+
+.tab:hover:not([data-active]) {
+  color: rgba(255, 255, 255, 0.85) !important;
+  background: rgba(255, 255, 255, 0.05) !important;
+}
+
+.tab[data-active]:hover {
+  color: white !important;
+  background: rgba(255, 255, 255, 0.05) !important;
+}
+
+.tabPanel {
+  padding-top: 0;
+}
+
+.empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 4rem 2rem;
+  text-align: center;
+}
+
+.questionCard {
+  background: rgba(255, 255, 255, 0.04) !important;
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+}
+
+.testCaseCard {
+  background: rgba(255, 255, 255, 0.03) !important;
+  border: 1px solid rgba(255, 255, 255, 0.06) !important;
+  padding: 0.625rem !important;
+}
+
+.sessionCard {
+  background: rgba(255, 255, 255, 0.04) !important;
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+}
+
+.code {
+  font-family: 'Courier New', monospace;
+  font-size: 0.75rem;
+  background: rgba(255, 255, 255, 0.08);
+  padding: 1px 6px;
+  border-radius: 4px;
+  color: #a78bfa;
+}
+
+.iconButton {
+  color: rgba(255, 255, 255, 0.5) !important;
+}
+.iconButton:hover {
+  color: white !important;
+  background: rgba(255, 255, 255, 0.08) !important;
+}
+
+.addButton {
+  background: linear-gradient(135deg, #7b5bf5 0%, #9d7eff 100%);
+  color: white;
+  border: none;
+}
+
+.addButton:hover {
+  background: linear-gradient(135deg, #6647d9 0%, #8b6ef0 100%);
+}
+
+.publishButton {
+  background: linear-gradient(135deg, #7b5bf5 0%, #9d7eff 100%);
+  color: white;
+  border: none;
+}
+
+.publishButton:hover {
+  background: linear-gradient(135deg, #6647d9 0%, #8b6ef0 100%);
+}
+
+.activateButton {
+  background: linear-gradient(135deg, #22c55e, #16a34a) !important;
+}
+
+.modalContent {
+  background: #1a1528 !important;
+  border: 1px solid rgba(123, 91, 245, 0.2) !important;
+}
+
+.modalHeader {
+  background: #1a1528 !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.07) !important;
+}
+
+.modalHeader * {
+  color: white !important;
+}
+
+.modalClose {
+  color: rgba(255, 255, 255, 0.5) !important;
+}
+
+.modalClose:hover {
+  color: white !important;
+  background: rgba(255, 255, 255, 0.08) !important;
+}
+
+.input {
+  background: rgba(255, 255, 255, 0.05) !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  color: white !important;
+}
+
+.input:focus {
+  border-color: rgba(123, 91, 245, 0.5) !important;
+}
+
+.input::placeholder {
+  color: rgba(255, 255, 255, 0.3) !important;
+}
+
+.label {
+  color: rgba(255, 255, 255, 0.75) !important;
+  font-size: 0.875rem !important;
+  margin-bottom: 4px;
+  margin-top: 8px;
+}
+
+.alert {
+  background: rgba(255, 107, 107, 0.08);
+  border: 1px solid rgba(255, 107, 107, 0.3);
+  border-radius: 6px;
+  margin-top: 4px;
+}

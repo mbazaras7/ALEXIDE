@@ -1,0 +1,98 @@
+.examCard {
+  background: rgba(255, 255, 255, 0.04) !important;
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.examCard:hover {
+  background: rgba(255, 255, 255, 0.07) !important;
+  border-color: rgba(123, 91, 245, 0.35) !important;
+  transform: translateY(-1px);
+}
+
+.examCardActive {
+  border-color: rgba(74, 222, 128, 0.25) !important;
+  background: rgba(74, 222, 128, 0.03) !important;
+}
+
+.examCardActive:hover {
+  border-color: rgba(74, 222, 128, 0.45) !important;
+}
+
+.createButton {
+  background: linear-gradient(135deg, #7b5bf5 0%, #9d7eff 100%);
+  color: white;
+  border: none;
+}
+
+.createButton:hover {
+  background: linear-gradient(135deg, #6647d9 0%, #8b6ef0 100%);
+}
+
+.empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 4rem 2rem;
+  text-align: center;
+}
+
+.modalContent {
+  background: #1a1528 !important;
+  border: 1px solid rgba(123, 91, 245, 0.2) !important;
+}
+
+.modalHeader {
+  background: #1a1528 !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.07) !important;
+}
+
+.modalHeader * {
+  color: white !important;
+}
+
+.modalClose {
+  color: rgba(255, 255, 255, 0.5) !important;
+}
+
+.modalClose:hover {
+  color: white !important;
+  background: rgba(255, 255, 255, 0.08) !important;
+}
+
+.input {
+  background: rgba(255, 255, 255, 0.05) !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  color: white !important;
+}
+
+.input:focus {
+  border-color: rgba(123, 91, 245, 0.5) !important;
+}
+
+.input::placeholder {
+  color: rgba(255, 255, 255, 0.3) !important;
+}
+
+.label {
+  color: rgba(255, 255, 255, 0.75) !important;
+  font-size: 0.875rem !important;
+  margin-bottom: 4px;
+  margin-top: 8px;
+}
+
+.switchLabel {
+  color: rgba(255, 255, 255, 0.75) !important;
+  font-size: 0.875rem !important;
+  margin-top: 4px;
+}
+
+.switchDesc {
+  color: rgba(255, 255, 255, 0.4) !important;
+  font-size: 0.75rem !important;
+}
+
+.alert {
+  border-radius: 8px;
+}

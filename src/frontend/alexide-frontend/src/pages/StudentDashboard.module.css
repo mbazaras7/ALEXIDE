@@ -1,0 +1,82 @@
+.container {
+  padding: 2rem;
+  max-width: 100%;
+  width: 100%;
+}
+
+.container * {
+  color: white;
+}
+
+.welcomeSection {
+  padding: 2rem;
+  background: rgba(123, 91, 245, 0.08);
+  backdrop-filter: blur(10px);
+  border-radius: 12px;
+  border: 1px solid rgba(123, 91, 245, 0.2);
+}
+
+.welcomeText {
+  color: white !important;
+}
+
+.statCard {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transition: all 0.3s ease;
+  height: 100%;
+}
+
+.statCard * {
+  color: white !important;
+}
+
+.statCard:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(123, 91, 245, 0.3);
+  border-color: rgba(123, 91, 245, 0.3);
+}
+
+.contentCard {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  height: 100%;
+}
+
+.contentCard * {
+  color: white !important;
+}
+
+.classCard {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  transition: all 0.2s ease;
+  height: 100%;
+}
+
+.classCard * {
+  color: white !important;
+}
+
+.classCard:hover {
+  background: rgba(255, 255, 255, 0.06);
+  border-color: rgba(123, 91, 245, 0.3);
+  transform: translateY(-2px);
+}
+
+.assignmentCard {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  transition: all 0.2s ease;
+}
+
+.assignmentCard * {
+  color: white !important;
+}
+
+.assignmentCard:hover {
+  background: rgba(255, 255, 255, 0.06);
+  border-color: rgba(123, 91, 245, 0.3);
+}

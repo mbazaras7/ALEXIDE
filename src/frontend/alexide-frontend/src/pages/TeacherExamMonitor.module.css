@@ -1,0 +1,123 @@
+.root {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  background: #0d0d1a;
+  color: white;
+  overflow: hidden;
+}
+
+.header {
+  flex-shrink: 0;
+  height: 52px;
+  display: flex;
+  align-items: center;
+  background: rgba(20, 18, 35, 0.98);
+  border-bottom: 1px solid rgba(123, 91, 245, 0.25);
+  padding: 0 16px;
+}
+
+.statsBar {
+  flex-shrink: 0;
+  padding: 8px 16px;
+  background: rgba(15, 13, 28, 0.9);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.onlineDot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #51cf66;
+  flex-shrink: 0;
+}
+
+.scrollArea {
+  flex: 1;
+  min-height: 0;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(25%, 1fr));
+  gap: 12px;
+  padding: 16px;
+}
+
+.studentCard {
+  background: rgba(255, 255, 255, 0.04) !important;
+  min-height: 120px;
+  border: 1px solid rgba(123, 91, 245, 0.15) !important;
+  border-radius: 8px !important;
+  transition:
+    border-color 200ms ease,
+    background 200ms ease;
+}
+
+.studentCard:hover {
+  border-color: rgba(123, 91, 245, 0.35) !important;
+}
+
+.studentCardAlert {
+  border-color: rgba(255, 120, 50, 0.5) !important;
+  background: rgba(255, 120, 50, 0.06) !important;
+  animation: alertPulse 1.5s ease-in-out 3;
+}
+
+@keyframes alertPulse {
+  0%,
+  100% {
+    border-color: rgba(255, 120, 50, 0.5);
+  }
+  50% {
+    border-color: rgba(255, 120, 50, 0.9);
+  }
+}
+
+.studentCardSubmitted {
+  border-color: rgba(74, 222, 128, 0.2) !important;
+  background: rgba(74, 222, 128, 0.03) !important;
+}
+
+.statusDot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.statusDotOnline {
+  background: var(--mantine-color-green-4);
+}
+.statusDotOffline {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.snapshotContent {
+  background: #1a1528 !important;
+  border: 1px solid rgba(123, 91, 245, 0.3) !important;
+}
+
+.snapshotHeader {
+  background: #1a1528 !important;
+  border-bottom: 1px solid rgba(123, 91, 245, 0.2) !important;
+  color: white;
+}
+
+.snapshotBody {
+  padding-top: 16px;
+}
+
+.snapshotCode {
+  background: rgba(255, 255, 255, 0.04);
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 12px;
+}
+
+.iconButton {
+  color: rgba(255, 255, 255, 0.5) !important;
+}
+.iconButton:hover {
+  color: white !important;
+  background: rgba(255, 255, 255, 0.08) !important;
+}

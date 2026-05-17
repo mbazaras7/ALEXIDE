@@ -1,0 +1,175 @@
+.container {
+  padding: 2rem;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: white;
+  letter-spacing: -0.3px;
+}
+
+.subtitle {
+  color: rgba(255, 255, 255, 0.4);
+  font-size: 0.875rem;
+  margin-top: 2px;
+}
+
+.createButton,
+.joinButton {
+  background: linear-gradient(135deg, #7b5bf5 0%, #9d7eff 100%);
+  color: white;
+  border: none;
+}
+
+.createButton:hover,
+.joinButton:hover {
+  background: linear-gradient(135deg, #6a4ee0 0%, #8b6eef 100%);
+}
+
+.card {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(123, 91, 245, 0.15);
+  border-radius: 6px;
+  transition:
+    border-color 0.2s ease,
+    background 0.2s ease;
+}
+
+.card:hover {
+  background: rgba(123, 91, 245, 0.08);
+  border-color: rgba(123, 91, 245, 0.3);
+  cursor: pointer;
+}
+
+.className {
+  font-weight: 600;
+  color: white;
+  font-size: 1rem;
+}
+
+.classDesc {
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 0.875rem;
+  margin-top: 4px;
+}
+
+.codeBadge {
+  background: rgba(123, 91, 245, 0.15);
+  color: #9d7eff;
+  font-family: monospace;
+  letter-spacing: 1px;
+  font-size: 0.8rem;
+}
+
+.teacherBadge {
+  background: rgba(123, 91, 245, 0.1);
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.iconButton {
+  color: rgba(255, 255, 255, 0.5);
+  transition: color 0.2s ease;
+}
+
+.iconButton:hover {
+  color: white;
+  background: rgba(123, 91, 245, 0.2);
+}
+
+.iconButtonDanger:hover {
+  background: rgba(255, 107, 107, 0.15);
+}
+
+.empty {
+  text-align: center;
+  padding: 4rem 2rem;
+  border: 2px dashed rgba(123, 91, 245, 0.15);
+  border-radius: 12px;
+}
+
+.memberRow {
+  padding: 8px 12px;
+  border-radius: 6px;
+  transition: background 0.15s ease;
+}
+
+.memberRow:hover {
+  background: rgba(123, 91, 245, 0.1);
+}
+
+.modalContent {
+  background: rgba(20, 20, 35, 0.98);
+  border: 1px solid rgba(123, 91, 245, 0.3);
+  border-radius: 6px;
+  backdrop-filter: blur(20px);
+}
+
+.modalHeader {
+  background: rgba(123, 91, 245, 0.08);
+  border-bottom: 1px solid rgba(123, 91, 245, 0.2);
+  border-top-left-radius: 6px;
+  border-top-right-radius: 6px;
+}
+
+.modalHeader * {
+  color: white;
+}
+
+.input {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(123, 91, 245, 0.3);
+  border-radius: 6px;
+  color: white;
+}
+
+.input:focus {
+  border-color: #7b5bf5;
+  box-shadow: 0 0 0 2px rgba(123, 91, 245, 0.2);
+}
+
+.input::placeholder {
+  color: rgba(255, 255, 255, 0.3);
+}
+
+.label {
+  color: rgba(255, 255, 255, 0.8);
+  font-weight: 500;
+  margin-bottom: 2px;
+  margin-top: 8px;
+}
+
+.sectionLabel {
+  font-size: 0.75rem;
+  color: rgba(255, 255, 255, 0.4);
+  text-transform: uppercase;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  margin-bottom: 6px;
+}
+
+.alert {
+  background: rgba(255, 107, 107, 0.08);
+  border: 1px solid rgba(255, 107, 107, 0.3);
+  border-radius: 6px;
+  margin-top: 6px;
+}
+
+.alertMessage {
+  color: rgba(255, 180, 180, 0.9);
+  font-size: 0.875rem;
+}
+
+.modalClose {
+  color: rgba(255, 255, 255, 0.6);
+  transition:
+    background 0.2s ease,
+    color 0.2s ease;
+}
+
+.modalClose:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: white;
+}

@@ -1,0 +1,55 @@
+.toggleButton {
+  margin-top: 0.5rem;
+}
+
+.panel {
+  margin-top: 0.75rem;
+  padding-top: 0.75rem;
+  border-top: 1px solid rgba(123, 91, 245, 0.15);
+}
+
+.sectionHeader {
+  display: flex;
+  align-items: center;
+  gap: 0.375rem;
+  margin-bottom: 0.375rem;
+}
+
+.sectionLabel {
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+}
+
+.aiFeedbackText {
+  font-size: 0.875rem;
+  white-space: pre-wrap;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.75);
+}
+
+.emptyState {
+  font-size: 0.75rem;
+  font-style: italic;
+}
+
+.errorText {
+  font-size: 0.75rem;
+  margin-top: 0.25rem;
+}
+
+.feedbackInput {
+  background: rgba(255, 255, 255, 0.04) !important;
+  border: 1px solid rgba(123, 91, 245, 0.2) !important;
+  color: white !important;
+  font-size: 0.875rem !important;
+}
+
+.divider {
+  border-color: rgba(123, 91, 245, 0.15);
+}
+
+.savedText {
+  font-size: 0.75rem;
+}

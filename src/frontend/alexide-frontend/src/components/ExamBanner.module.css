@@ -1,0 +1,99 @@
+.banner {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  height: 48px;
+  background: rgba(15, 12, 30, 0.97);
+  border-bottom: 1px solid rgba(123, 91, 245, 0.3);
+  backdrop-filter: blur(10px);
+  flex-shrink: 0;
+}
+
+.examModeBadge {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 3px 8px;
+  background: rgba(123, 91, 245, 0.2);
+  border: 1px solid rgba(123, 91, 245, 0.4);
+  border-radius: 6px;
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: #a78bfa;
+}
+
+.timer {
+  font-family: 'Courier New', monospace;
+  font-size: 0.9375rem;
+  font-weight: 700;
+  color: white;
+  min-width: 60px;
+  text-align: center;
+}
+
+.timerLow {
+  color: #fbbf24;
+}
+
+.timerCritical {
+  color: #f87171;
+  animation: pulse 1s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+.tabCounter {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 3px 8px;
+  background: rgba(251, 191, 36, 0.1);
+  border: 1px solid rgba(251, 191, 36, 0.3);
+  border-radius: 6px;
+  font-size: 0.75rem;
+  color: #fbbf24;
+}
+
+.tabCounterDanger {
+  background: rgba(248, 113, 113, 0.1);
+  border-color: rgba(248, 113, 113, 0.3);
+  color: #f87171;
+}
+
+.warningToast {
+  position: absolute;
+  top: 56px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 16px;
+  background: rgba(251, 191, 36, 0.15);
+  border: 1px solid rgba(251, 191, 36, 0.4);
+  border-radius: 8px;
+  color: #fbbf24;
+  font-size: 0.8125rem;
+  z-index: 101;
+  animation: slideDown 0.2s ease;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateX(-50%) translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+}
