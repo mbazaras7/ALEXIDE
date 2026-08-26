@@ -122,12 +122,6 @@ jobs:
           POSTGRES_USER: test_user
           POSTGRES_HOST_AUTH_METHOD: trust
         ports: ["5432:5432"]
-      minio:
-        image: minio/minio
-        env:
-          MINIO_ROOT_USER: alexide_admin
-          MINIO_ROOT_PASSWORD: ${{ secrets.MINIO_ROOT_PASSWORD }}
-        ports: ["9000:9000"]
       redis:
         image: redis:7
         ports: ["6379:6379"]
@@ -150,6 +144,12 @@ jobs:
         with:
           path: src/backend/node_modules
           key: ${{ runner.os }}-backend-${{ hashFiles('src/backend/package-lock.json') }}
+      - name: Start MinIO
+        run: |
+          docker run -d --name minio -p 9000:9000 \
+            -e MINIO_ROOT_USER=alexide_admin \
+            -e MINIO_ROOT_PASSWORD=${{ secrets.MINIO_ROOT_PASSWORD }} \
+            minio/minio server /data
       - name: Install postgres client
         run: sudo apt-get update -qq && sudo apt-get install -y -qq postgresql-client
       - name: Wait for services
@@ -201,12 +201,6 @@ jobs:
           POSTGRES_USER: test_user
           POSTGRES_HOST_AUTH_METHOD: trust
         ports: ["5432:5432"]
-      minio:
-        image: minio/minio
-        env:
-          MINIO_ROOT_USER: alexide_admin
-          MINIO_ROOT_PASSWORD: ${{ secrets.MINIO_ROOT_PASSWORD }}
-        ports: ["9000:9000"]
       redis:
         image: redis:7
         ports: ["6379:6379"]
@@ -229,6 +223,12 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: ${{ vars.NODE_VERSION }}
+      - name: Start MinIO
+        run: |
+          docker run -d --name minio -p 9000:9000 \
+            -e MINIO_ROOT_USER=alexide_admin \
+            -e MINIO_ROOT_PASSWORD=${{ secrets.MINIO_ROOT_PASSWORD }} \
+            minio/minio server /data
       # ubuntu-latest runners include Docker natively - no DinD service container needed
       - name: Wait for services
         run: |
@@ -268,12 +268,6 @@ jobs:
           POSTGRES_USER: test_user
           POSTGRES_HOST_AUTH_METHOD: trust
         ports: ["5432:5432"]
-      minio:
-        image: minio/minio
-        env:
-          MINIO_ROOT_USER: alexide_admin
-          MINIO_ROOT_PASSWORD: ${{ secrets.MINIO_ROOT_PASSWORD }}
-        ports: ["9000:9000"]
       redis:
         image: redis:7
         ports: ["6379:6379"]
@@ -293,6 +287,12 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: ${{ vars.NODE_VERSION }}
+      - name: Start MinIO
+        run: |
+          docker run -d --name minio -p 9000:9000 \
+            -e MINIO_ROOT_USER=alexide_admin \
+            -e MINIO_ROOT_PASSWORD=${{ secrets.MINIO_ROOT_PASSWORD }} \
+            minio/minio server /data
       - name: Cache Playwright browsers
         uses: actions/cache@v4
         with:
