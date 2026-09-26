@@ -1,0 +1,335 @@
+name: ALEXIDE CI
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+env:
+  NODE_VERSION: ${{ vars.NODE_VERSION }}
+
+jobs:
+  backend-install:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ vars.NODE_VERSION }}
+      - name: Cache backend node_modules
+        uses: actions/cache@v4
+        with:
+          path: src/backend/node_modules
+          key: ${{ runner.os }}-backend-${{ hashFiles('src/backend/package-lock.json') }}
+      - run: cd src/backend && npm ci
+
+  frontend-install:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ vars.NODE_VERSION }}
+      - name: Cache frontend node_modules
+        uses: actions/cache@v4
+        with:
+          path: src/frontend/alexide-frontend/node_modules
+          key: ${{ runner.os }}-frontend-${{ hashFiles('src/frontend/alexide-frontend/package-lock.json') }}
+      - run: cd src/frontend/alexide-frontend && npm ci
+
+  backend-lint:
+    runs-on: ubuntu-latest
+    needs: [backend-install]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ vars.NODE_VERSION }}
+      - uses: actions/cache@v4
+        with:
+          path: src/backend/node_modules
+          key: ${{ runner.os }}-backend-${{ hashFiles('src/backend/package-lock.json') }}
+      - working-directory: src/backend
+        run: |
+          npm run lint
+          npm run format:check
+
+  frontend-lint:
+    runs-on: ubuntu-latest
+    needs: [frontend-install]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ vars.NODE_VERSION }}
+      - uses: actions/cache@v4
+        with:
+          path: src/frontend/alexide-frontend/node_modules
+          key: ${{ runner.os }}-frontend-${{ hashFiles('src/frontend/alexide-frontend/package-lock.json') }}
+      - working-directory: src/frontend/alexide-frontend
+        run: |
+          npm run lint
+          npm run format:check
+
+  backend-build:
+    runs-on: ubuntu-latest
+    needs: [backend-lint]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ vars.NODE_VERSION }}
+      - uses: actions/cache@v4
+        with:
+          path: src/backend/node_modules
+          key: ${{ runner.os }}-backend-${{ hashFiles('src/backend/package-lock.json') }}
+      - working-directory: src/backend
+        run: npm run build
+      - uses: actions/upload-artifact@v4
+        with:
+          name: backend-dist
+          path: src/backend/dist/
+          retention-days: 1
+
+  frontend-build:
+    runs-on: ubuntu-latest
+    needs: [frontend-lint]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ vars.NODE_VERSION }}
+      - uses: actions/cache@v4
+        with:
+          path: src/frontend/alexide-frontend/node_modules
+          key: ${{ runner.os }}-frontend-${{ hashFiles('src/frontend/alexide-frontend/package-lock.json') }}
+      - working-directory: src/frontend/alexide-frontend
+        run: npm run build
+      - uses: actions/upload-artifact@v4
+        with:
+          name: frontend-build
+          path: src/frontend/alexide-frontend/build/
+          retention-days: 1
+
+  backend-test:
+    runs-on: ubuntu-latest
+    needs: [backend-build]
+    services:
+      postgres:
+        image: postgres:16
+        env:
+          POSTGRES_DB: alexide_test
+          POSTGRES_USER: test_user
+          POSTGRES_HOST_AUTH_METHOD: trust
+        ports: ["5432:5432"]
+      redis:
+        image: redis:7
+        ports: ["6379:6379"]
+    env:
+      DB_HOST: localhost
+      DB_PORT: "5432"
+      DB_NAME: alexide_test
+      DB_USER: test_user
+      MINIO_ENDPOINT: http://localhost:9000
+      MINIO_ACCESS_KEY: alexide_admin
+      MINIO_ROOT_PASSWORD: ${{ secrets.MINIO_ROOT_PASSWORD }}
+      S3_BUCKET_NAME: alexide-files
+      REDIS_URL: redis://localhost:6379
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ vars.NODE_VERSION }}
+      - uses: actions/cache@v4
+        with:
+          path: src/backend/node_modules
+          key: ${{ runner.os }}-backend-${{ hashFiles('src/backend/package-lock.json') }}
+      - name: Start MinIO
+        run: |
+          docker run -d --name minio -p 9000:9000 \
+            -e MINIO_ROOT_USER=alexide_admin \
+            -e MINIO_ROOT_PASSWORD=${{ secrets.MINIO_ROOT_PASSWORD }} \
+            minio/minio server /data
+      - name: Install postgres client
+        run: sudo apt-get update -qq && sudo apt-get install -y -qq postgresql-client
+      - name: Wait for services
+        run: |
+          until pg_isready -h localhost -p 5432 -U test_user; do sleep 2; done
+          until curl -sf http://localhost:9000/minio/health/live; do sleep 2; done
+      - working-directory: src/backend
+        run: |
+          npm run db:push
+          npm run setup:minio
+          npm run test
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: backend-test-results
+          path: |
+            src/backend/coverage/junit.xml
+            src/backend/coverage/cobertura-coverage.xml
+
+  frontend-test:
+    runs-on: ubuntu-latest
+    needs: [frontend-build]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ vars.NODE_VERSION }}
+      - uses: actions/cache@v4
+        with:
+          path: src/frontend/alexide-frontend/node_modules
+          key: ${{ runner.os }}-frontend-${{ hashFiles('src/frontend/alexide-frontend/package-lock.json') }}
+      - working-directory: src/frontend/alexide-frontend
+        run: npm test -- --coverage --watchAll=false
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: frontend-coverage
+          path: src/frontend/alexide-frontend/coverage/
+          retention-days: 7
+
+  backend-smoke:
+    runs-on: ubuntu-latest
+    needs: [backend-test, frontend-test]
+    services:
+      postgres:
+        image: postgres:16
+        env:
+          POSTGRES_DB: alexide_test
+          POSTGRES_USER: test_user
+          POSTGRES_HOST_AUTH_METHOD: trust
+        ports: ["5432:5432"]
+      redis:
+        image: redis:7
+        ports: ["6379:6379"]
+    env:
+      DB_HOST: localhost
+      DB_PORT: "5432"
+      DB_NAME: alexide_test
+      DB_USER: test_user
+      MINIO_ENDPOINT: http://localhost:9000
+      MINIO_ACCESS_KEY: alexide_admin
+      MINIO_ROOT_PASSWORD: ${{ secrets.MINIO_ROOT_PASSWORD }}
+      S3_BUCKET_NAME: alexide-files
+      EXEC_NETWORK_NAME: alexide-exec-network
+      EXEC_IMAGE_NAME: alexide-python-executor
+      SMOKE_TEST_URL: http://localhost:3000
+      REDIS_URL: redis://localhost:6379
+      CORS_ORIGIN: http://localhost:3000
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ vars.NODE_VERSION }}
+      - name: Start MinIO
+        run: |
+          docker run -d --name minio -p 9000:9000 \
+            -e MINIO_ROOT_USER=alexide_admin \
+            -e MINIO_ROOT_PASSWORD=${{ secrets.MINIO_ROOT_PASSWORD }} \
+            minio/minio server /data
+      # ubuntu-latest runners include Docker natively - no DinD service container needed
+      - name: Wait for services
+        run: |
+          until pg_isready -h localhost -p 5432 -U test_user; do sleep 2; done
+          until curl -sf http://localhost:9000/minio/health/live; do sleep 2; done
+      - working-directory: src/backend
+        run: |
+          npm ci
+          docker build -t alexide-python-executor ./docker/python-executor
+          docker run --rm --user sandbox alexide-python-executor python3 --version
+          docker network create alexide-exec-network || true
+          npm run db:push
+          npm run setup:minio
+          npm run build
+          node dist/index.js &
+          echo $! > /tmp/server.pid
+          until curl -sf http://localhost:3000/api/backend/health; do sleep 2; done
+      - working-directory: src/backend
+        run: npm run smoke
+      - if: always()
+        run: kill $(cat /tmp/server.pid) 2>/dev/null || true
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: smoke-results
+          path: src/backend/smoke-results.log
+
+  frontend-e2e:
+    runs-on: ubuntu-latest
+    needs: [backend-smoke]
+    if: github.ref == 'refs/heads/main'
+    services:
+      postgres:
+        image: postgres:16
+        env:
+          POSTGRES_DB: alexide_test
+          POSTGRES_USER: test_user
+          POSTGRES_HOST_AUTH_METHOD: trust
+        ports: ["5432:5432"]
+      redis:
+        image: redis:7
+        ports: ["6379:6379"]
+    env:
+      DB_HOST: localhost
+      DB_PORT: "5432"
+      DB_USER: test_user
+      DB_NAME: alexide_test
+      MINIO_ENDPOINT: http://localhost:9000
+      MINIO_ACCESS_KEY: alexide_admin
+      MINIO_ROOT_PASSWORD: ${{ secrets.MINIO_ROOT_PASSWORD }}
+      S3_BUCKET_NAME: alexide-files
+      REDIS_URL: redis://localhost:6379
+      CORS_ORIGIN: http://localhost:3001
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ vars.NODE_VERSION }}
+      - name: Start MinIO
+        run: |
+          docker run -d --name minio -p 9000:9000 \
+            -e MINIO_ROOT_USER=alexide_admin \
+            -e MINIO_ROOT_PASSWORD=${{ secrets.MINIO_ROOT_PASSWORD }} \
+            minio/minio server /data
+      - name: Cache Playwright browsers
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/ms-playwright
+          key: playwright-${{ hashFiles('src/frontend/alexide-frontend/package-lock.json') }}
+      - name: Wait for services
+        run: |
+          until pg_isready -h localhost -p 5432 -U test_user; do sleep 2; done
+          until curl -sf http://localhost:9000/minio/health/live; do sleep 2; done
+      - working-directory: src/backend
+        run: |
+          npm ci
+          npm run db:push
+          npm run setup:minio
+          npm run build
+          node dist/index.js &
+          echo $! > /tmp/backend.pid
+          until curl -sf http://localhost:3000/api/backend/health; do sleep 2; done
+          npm run seed:e2e
+      - working-directory: src/frontend/alexide-frontend
+        run: |
+          npm ci
+          npx playwright install --with-deps
+          npx serve -s build -l 3001 &
+          echo $! > /tmp/frontend.pid
+          until curl -sf http://localhost:3001; do sleep 2; done
+      - working-directory: src/frontend/alexide-frontend
+        run: npx playwright test
+      - if: always()
+        run: |
+          kill $(cat /tmp/backend.pid) 2>/dev/null || true
+          kill $(cat /tmp/frontend.pid) 2>/dev/null || true
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: playwright-report
+          path: |
+            src/frontend/alexide-frontend/playwright-report/
+            src/frontend/alexide-frontend/results.xml
+          retention-days: 14
