@@ -4,8 +4,7 @@
 
 ALEXIDE combines the editing experience of a professional IDE (Monaco Editor, real-time collaboration, an in-browser terminal) with the classroom-management workflow of an LMS: assignments, automated grading, timed exams with live monitoring, and AI-assisted feedback, all accessible from a browser with no local installation. It was built as a final-year Computer Science project at Dublin City University by Medas Bazaras and Dziugas Vaitiekus, supervised by Graham Healy.
 
-![ALEXIDE Home Page](docs/images/
-homepage.png)
+![ALEXIDE Home Page](docs/images/homepage.png)
 
 ## Table of Contents
 
@@ -80,7 +79,7 @@ ALEXIDE follows a layered, five-tier architecture:
 
 Routing follows: **Routes -> Controllers -> Services -> Repositories -> Database**.
 
-![Architecture Diagramdocs/images/SystemArchitectuream.png)
+![Architecture Diagramdocs](/images/SystemArchitecture.png)
 
 ### Notable design decisions
 
@@ -104,39 +103,39 @@ Add screenshots of the key flows below once available.
 
 **Home page**
 
-![Home Pagedocs/images/R_homepage.png)
+![Home Page](docs/images/homepage.png)
 
 **Authentication (login / sign up)**
 
-![Authenticationdocs/images/Authenticationge.png)
+![Authentication](docs/images/Authentication.png)
 
 **Student dashboard**
 
-![Student Dashboarddocs/images/StudentDashboardrd.png)
+![Student Dashboard](docs/images/StudentDashboard.png)
 
 **Teacher dashboard**
 
-![Teacher Dashboarddocs/images/TeacherDashboardrd.png)
+![Teacher Dashboard](docs/images/TeacherDashboard.png)
 
 **IDE, code editor, file explorer and terminal**
 
-![IDE Viewdocs/images/IDEViewew.png)
+![IDE View](docs/images/IDEView.png)
 
 **Assignment page with test results and feedback**
 
-![Assignment Pagedocs/images/Assignmentge.png)
+![AssignmentPage](docs/images/Assignment.png)
 
 **Live exam mode (student view)**
 
-![Exam Modedocs/images/StudentExamde.png)
+![Exam Mode](docs/images/StudentExam.png)
 
 **Exam monitor (teacher view)**
 
-![Exam Monitordocs/images/TeacherExamor.png)
+![Exam Monitor](docs/images/TeacherExam.png)
 
 **Real-time collaboration session**
 
-![Collaborationdocs/images/C_collaboration.png)
+![Collaboration](docs/images/Collaboration.png)
 
 ## Getting Started
 
